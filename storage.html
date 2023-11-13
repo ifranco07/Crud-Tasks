@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Almacenamineto en la nube</h1>
+    <form>
+        <input type="file" name="myfile" id="myfile">
+    </form>
+    <script type="module">
+        import {initializeApp} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+        import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js"
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBZurB5ctYwI7RgLAzwn38QVYwugAlg9Og",
+    authDomain: "fir-tasks-c56ef.firebaseapp.com",
+    projectId: "fir-tasks-c56ef",
+    storageBucket: "fir-tasks-c56ef.appspot.com",
+    messagingSenderId: "1069568266837",
+    appId: "1:1069568266837:web:ba8ddf17c2bc2ea0083adc"
+  };
+
+// Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+  const storage= getStorage(app);
+
+  const uploadFile= file => {
+    const storageRef= ref(storage, 'images/' + file.name);
+
+    // 'file' comes from the Blob or File API
+    uploadBytes(storageRef, file).then((snapshot) => {
+      console.log('Uploaded a blob or file!');
+  });
+
+  }
+    </script>
+</body>
+</html>
